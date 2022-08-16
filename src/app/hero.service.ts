@@ -1,31 +1,21 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
 
-@Injectable({providedIn: 'root'})
+import { Hero } from "./hero";
+import { HEROES } from "./mock-heros";
+import { MessageService } from "./message.service";
 
-export class HeroService {
+@Injectable({
+    providedIn: 'root'
+})
 
-    //Web api URL
-    private heroesUrl = 'api/heroes'; 
+export class HeroService { 
 
-    httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
-    };
+    constructor(private messageService: MessageService) {} 
 
-    constructor(
-        private http: HttpClient,
-        private messageService: MessageService) {}
-
-
-    /** Get hero by id. Returns undefined when id not found */    
-    getHeroNo404<Data>(id: number): Observable<Hero[]> {
-        return this.http.get<Hero[]>(this.heroesUrl)
-        .pipe(
-            tap(_ => this.log('fetched heroes')),
-            catchError(this.handleError<Hero[]>('getHeroes', []))
-        )
+    getHeroes(): Observable<Hero[]> {
+        const heroes = of(HEROES);
+        this.messageService.add("HeroService: fetched heroes")
+        return heroes;
     }
-
 }
