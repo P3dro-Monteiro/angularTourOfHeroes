@@ -1,5 +1,9 @@
 # AngularTourOfHeroes
 
+
+
+**Based on Angular Tour of Heroes Tutorial, Copyright Google LLC. All Rights Reserved. Use of this source code is governed by an MIT-style license that can be found in the LICENSE file at https://angular.io/license**
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
 
 ## Development server
